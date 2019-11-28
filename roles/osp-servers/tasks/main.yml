@@ -1,40 +1,8 @@
 ---
-### Check server info
-#- os_server_info:
-#    cloud: ospcloud
-#  register: result
-
-
-
-#- name: check the code to extract
-#  debug:
-#    msg: "name={{ item.0.name }} meta={{ item.0.meta }}"
-#  with_dict:
-#    - "{{osp_servers}}"
-  
-
-#  debug:
-#msg: "name= {{ item.value.meta }}"
-#  loop: "{{ osp_servers|dict2items }}"
-
-# tasks file for osp.servers
-#- name: Create new server instances and attaches them a network and passes metadata to the instance
-#  os_server:
-#    cloud: ospcloud
-#    name: "{{ item.value.name }}"
-#    state: "{{ item.value.state }}"
-#    image: "{{ item.value.image }}"
-#    key_name: "{{ item.value.key_name }}"
-#    flavor: "{{ item.value.flavor }}"
-#    security_groups: "{{ item.value.security_group }}"
-#    nics:
-#      - net-name: int_network
-#    meta: "{{ item.0.name }}"
-#  loop: "{{ osp_servers|dict2items }}"
-
 - name: Gather facts about previously created networks
   os_networks_facts:
     cloud: ospcloud
+- name: show network details
   debug:
     var: openstack_networks
 
