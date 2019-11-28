@@ -1,4 +1,5 @@
 ---
+#- name: Create new server instances and attaches them a network and passes metadata to the instance
 - name: Gather facts about previously created networks
   os_networks_facts:
     cloud: ospcloud
