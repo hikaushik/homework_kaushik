@@ -20,21 +20,28 @@
 #  debug:
 #    var: openstack_subnets
 # tasks file for osp.servers
-- name: Create new server instances and attaches them a network and passes metadata to the instance
-  os_server:
-    cloud: ospcloud
-    name: "{{ item.value.name }}"
-    #state: "{{ item.value.state }}"
-    state: absent
-    image: "{{ item.value.image }}"
-    key_name: "{{ item.value.key_name }}"
-    flavor: "{{ item.value.flavor }}"
-    security_groups: "{{ item.value.security_group }}"
-    nics:
-      - net-name: int_network
+#- name: create new server instances and attaches them a network and passes metadata to the instance
+#  os_server:
+#    cloud: ospcloud
+#    name: "{{ item.value.name }}"
+#    #state: "{{ item.value.state }}"
+#    state: absent
+#    image: "{{ item.value.image }}"
+#    key_name: "{{ item.value.key_name }}"
+#    flavor: "{{ item.value.flavor }}"
+#    security_groups: "{{ item.value.security_group }}"
+#    nics:
+#      - net-name: int_network
 #    meta: "{{ item.value.name }}"
-  with_dict: "{{osp_servers}}"
+#  with_dict: "{{osp_servers}}"
 #
+- name: Delete new server instances and attaches them a network and passes metadata to the instance
+  os_server:
+     cloud: ospcloud
+     name: "{{ item.value.name }}"
+     state: absent
+  with_dict: "{{osp_servers}}" 
+    
 #- name: Add floating IP to Servers
 #  os_floating_ip:
 #    cloud: ospcloud
