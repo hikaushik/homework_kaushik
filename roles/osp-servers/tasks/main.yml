@@ -40,7 +40,7 @@
     state: present
     reuse: yes
     server: "{{ item.value.name }}"
-    network: ext_network
+    network: ext_net
     wait: true
     timeout: 180
   with_dict: "{{osp_servers}}"
