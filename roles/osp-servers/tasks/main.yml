@@ -7,6 +7,13 @@
   debug:
     var: openstack_networks
 
+- name: Gather facts about previously created subnets
+  os_subnets_info:
+    cloud: ospcloud
+
+- name: show subnet details
+  debug:
+    var: openstack_subnets
 #- name: Add floating IP to Servers
    
 
